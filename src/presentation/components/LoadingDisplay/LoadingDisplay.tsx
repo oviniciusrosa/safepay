@@ -1,9 +1,6 @@
-import { Text } from "react-native";
 import { useLoading } from "~/core/store/loading";
 
 import * as S from "./styles";
-// import LottieView from "lottie-react-native";
-// import LogoAnimation from "../../../assets/animations/logo-loading.json";
 
 export function LoadingDisplay() {
   const { isLoading } = useLoading();
@@ -23,11 +20,3 @@ export function LoadingDisplay() {
     </S.Container>
   );
 }
-
-// export const LoadingIcon = () => (
-//   <LottieView
-//     autoPlay
-//     source={LogoAnimation}
-//     style={{ width: 60, height: 60 }}
-//   />
-// );

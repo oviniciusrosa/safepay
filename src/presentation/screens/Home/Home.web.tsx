@@ -1,6 +1,9 @@
+import { useAuthSession } from "@/src/core/store/auth-session";
 import React from "react";
 
 export function Home() {
+  const { signOut } = useAuthSession();
+
   return (
     <div
       style={{
@@ -11,6 +14,8 @@ export function Home() {
       }}
     >
       <p>Home WEB</p>
+
+      <button onClick={signOut}>Sair</button>
     </div>
   );
 }
