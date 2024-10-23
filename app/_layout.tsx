@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 import { ThemeProvider } from "styled-components/native";
 
+import "@/src/theme/global.css";
+
 export const unstable_settings = {
   initialRouteName: "login",
 };

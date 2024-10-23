@@ -15,7 +15,6 @@ export const FirstColumn = styled.View`
 export const SecondColumn = styled.View``;
 
 export const Title = styled.Text`
-  font-family: ${({ theme }) => getFontFamily(theme, "P_600")};
   font-size: 24px;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.black};
