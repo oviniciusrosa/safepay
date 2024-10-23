@@ -3,12 +3,16 @@ import React from "react";
 import * as S from "./Login.styles";
 import { ILoginProps } from "./interface";
 import { Card } from "@/src/presentation/components";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, View } from "react-native";
+import { colorScheme, useColorScheme } from "nativewind";
+
 import { Button } from "../../components/Button";
 
 export function Login(props: ILoginProps) {
+  const { colorScheme, setColorScheme } = useColorScheme();
+
   return (
-    <S.Container>
+    <View className="flex-1 items-center justify-center bg-white dark:bg-black">
       <Card>
         <S.FirstColumn>
           <S.Title>Bem vindo(a) de volta!</S.Title>
@@ -33,9 +37,17 @@ export function Login(props: ILoginProps) {
             variant="default"
             onPress={props.requestSignIn}
           />
+          <View className="h-2" />
+          <Button
+            label="Change theme"
+            variant="link"
+            onPress={() => {
+              setColorScheme(colorScheme === "dark" ? "light" : "dark");
+            }}
+          />
         </S.FirstColumn>
         <S.SecondColumn>{/* EXIBIR IMAGEM */}</S.SecondColumn>
       </Card>
-    </S.Container>
+    </View>
   );
 }
