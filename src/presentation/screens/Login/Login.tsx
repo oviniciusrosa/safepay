@@ -1,50 +1,68 @@
 import React from "react";
 
-import * as S from "./Login.styles";
 import { ILoginProps } from "./interface";
-import { Card } from "@/src/presentation/components";
-import { TouchableOpacity, Text, View, ImageBackground } from "react-native";
-import { colorScheme, useColorScheme } from "nativewind";
-
-import BgImage from "@/assets/images/bg.jpg";
-
-import { Button } from "../../components/Button";
-import { Input } from "../../components/Input";
+import {
+  Screen,
+  Logo,
+  AppVersion,
+  Input,
+  Button,
+  FingerprintButton,
+} from "@/src/presentation/components";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { useColorScheme } from "nativewind";
+import { Link } from "expo-router";
+import { FingerprintIcon } from "../../icons/Fingerprint";
 
 export function Login(props: ILoginProps) {
-  const { colorScheme, setColorScheme } = useColorScheme();
-
   return (
-    <ImageBackground source={BgImage} className="flex-1 justify-center">
-      <View className="flex-1 justify-end">
-        <View
-          className="flex-[0.5] bg-white dark:bg-black rounded-[32px] p-6"
-          style={{
-            elevation: 2,
-            shadowColor: "#000",
-            shadowOffset: { width: 0, height: 3 },
-            shadowOpacity: 0.4,
-            shadowRadius: 8,
-          }}
-        >
-          <Text className="text-[24px] font-bold color-black">
-            Bem-vindo(a)
+    <Screen>
+      <ScrollView
+        className="flex-1"
+        contentContainerClassName="grow justify-center"
+      >
+        <Logo className="self-center" />
+        <View className="flex-1 justify-center">
+          <Text className="color-grey-80 dark:color-grey-20 text-[32px] font-bold">
+            Olá,
           </Text>
-          <Text className="text-base color-black">
+          <Text className="color-grey-70 dark:color-grey-40  text-base">
             Garanta a segurança de suas vendas com o melhor amigo do seu
             negócio.
           </Text>
 
-          <Input className="mt-3" label="Email" placeholder="Email" />
-          <Input className="mt-3 mb-6" label="Senha" placeholder="········" />
+          <Input.Email
+            className="mt-8"
+            label="Email"
+            placeholder="Digite seu email"
+            value="john@doe.com"
+            lockField
+            enableEditingWhenLock
+          />
+
+          <Input.Password
+            className="mt-3 mb-3"
+            label="Senha"
+            placeholder="••••••••"
+          />
 
           <Button
             label="Entrar"
             variant="default"
             onPress={props.requestSignIn}
           />
+
+          <Link href="/" className="mt-6">
+            <Text className="text-grey-60 dark:text-grey-40 underline">
+              Esqueci minha senha
+            </Text>
+          </Link>
+
+          <FingerprintButton className="mt-12 self-center" />
         </View>
-      </View>
-    </ImageBackground>
+
+        <AppVersion className="self-center" />
+      </ScrollView>
+    </Screen>
   );
 }

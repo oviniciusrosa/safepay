@@ -5,7 +5,7 @@ import React from "react";
 export default function TabLayout() {
   const { session } = useAuthSession();
 
-  if (!session) return <Redirect href="/login" />;
+  if (!session) return <Redirect href="/" />;
 
   if (process.env.EXPO_OS === "web") return <Slot />;
 
