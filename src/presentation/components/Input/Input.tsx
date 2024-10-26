@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import {
   Keyboard,
   Pressable,
@@ -40,7 +40,7 @@ function Input(props: InputProps) {
   const fieldName = props.name ?? props.label;
   const focused = focusController.focusedField === fieldName;
 
-  const activeLabel = focused || text.length > 0;
+  const activeLabel = text?.length > 0 || focused;
 
   function updateText(text: string) {
     setText(text);
@@ -162,6 +162,7 @@ function Input(props: InputProps) {
 Input.Password = (props: InputProps) => (
   <Input {...props} TrailingIcon={<LoginPasswordIcon />} isPassword />
 );
+
 Input.Email = (props: InputProps) => (
   <Input {...props} TrailingIcon={<LoginEmailIcon />} />
 );
