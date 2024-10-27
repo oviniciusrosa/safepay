@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { MotiText, MotiView } from "moti";
 
-const INIT_STYLE = { opacity: 0, transform: [{ translateY: -10 }] };
+const INIT_STYLE = { opacity: 0, transform: [{ translateY: 10 }] };
 const IN_SCREEN_STYLE = { opacity: 1, transform: [{ translateY: 0 }] };
 
 export const LogoContainer = styled(MotiView).attrs({
@@ -25,6 +25,8 @@ export const Container: typeof MotiView = styled(MotiView)`
   height: 100%;
   align-items: center;
   justify-content: center;
+
+  z-index: 1000;
 `;
 
 export const LoadingMessage = styled(MotiText).attrs({

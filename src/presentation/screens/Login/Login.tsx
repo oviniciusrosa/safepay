@@ -9,10 +9,8 @@ import {
   Button,
   FingerprintButton,
 } from "@/src/presentation/components";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { useColorScheme } from "nativewind";
+import { ScrollView, Text, View } from "react-native";
 import { Link } from "expo-router";
-import { FingerprintIcon } from "../../icons/Fingerprint";
 
 export function Login(props: ILoginProps) {
   return (
@@ -35,9 +33,6 @@ export function Login(props: ILoginProps) {
             className="mt-8"
             label="Email"
             placeholder="Digite seu email"
-            value="john@doe.com"
-            lockField
-            enableEditingWhenLock
           />
 
           <Input.Password

@@ -1,4 +1,6 @@
 import { useLoading } from "~/core/store/loading";
+import LottieView from "lottie-react-native";
+import LoadingAnimation from "@/assets/animations/loading.json";
 
 import * as S from "./styles";
 
@@ -12,10 +14,13 @@ export function LoadingDisplay() {
       transition={{ type: "timing", duration: 200 }}
     >
       {isLoading && (
-        <>
-          <S.LogoContainer>{/* <LoadingIcon /> */}</S.LogoContainer>
-          <S.LoadingMessage>Carregando...</S.LoadingMessage>
-        </>
+        <S.LogoContainer>
+          <LottieView
+            autoPlay
+            source={LoadingAnimation}
+            style={{ width: 150, height: 150 }}
+          />
+        </S.LogoContainer>
       )}
     </S.Container>
   );

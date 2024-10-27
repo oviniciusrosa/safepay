@@ -3,10 +3,12 @@ import React from "react";
 import { KeyboardAvoidingView, Platform, Pressable } from "react-native";
 import { cn } from "../../lib/utils";
 import ExpoConstants from "expo-constants";
+import { LoadingDisplay } from "../LoadingDisplay";
 
 interface Props {
   children: React.ReactNode;
   className?: string;
+  disableLoading?: boolean;
 }
 
 export function Screen(props: Props): React.ReactElement {
@@ -17,6 +19,7 @@ export function Screen(props: Props): React.ReactElement {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
+      {!props.disableLoading && <LoadingDisplay />}
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
