@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ILoginProps } from "./interface";
+import { ILoginProps } from "@/src/core/interfaces/login";
 import {
   Screen,
   Logo,
@@ -13,6 +13,9 @@ import { ScrollView, Text, View } from "react-native";
 import { Link } from "expo-router";
 
 export function Login(props: ILoginProps) {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
   return (
     <Screen>
       <ScrollView
@@ -33,18 +36,22 @@ export function Login(props: ILoginProps) {
             className="mt-8"
             label="Email"
             placeholder="Digite seu email"
+            value={email}
+            onChangeText={setEmail}
           />
 
           <Input.Password
             className="mt-3 mb-3"
             label="Senha"
             placeholder="••••••••"
+            value={password}
+            onChangeText={setPassword}
           />
 
           <Button
             label="Entrar"
             variant="default"
-            onPress={props.requestSignIn}
+            onPress={() => props.requestSignIn(email, password)}
           />
 
           <Link href="/" className="mt-6">
