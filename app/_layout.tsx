@@ -32,9 +32,9 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Stack initialRouteName="login">
-        <Stack.Screen name="login" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+      <Stack initialRouteName="login" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="login" />
+        <Stack.Screen name="(auth)" />
         <Stack.Screen name="+not-found" />
       </Stack>
     </ThemeProvider>

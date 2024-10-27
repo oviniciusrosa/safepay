@@ -1,6 +1,10 @@
-import { Redirect } from "expo-router";
+import { SplashScreen } from "@/src/presentation/screens/Splash";
+import { Redirect, Slot, Stack } from "expo-router";
+import { Platform } from "react-native";
 
 const Index = () => {
-  return <Redirect href="/login" />;
+  if (Platform.OS === "web") return <Redirect href="/login" />;
+
+  return <SplashScreen />;
 };
 export default Index;
