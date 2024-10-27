@@ -49,7 +49,6 @@ function Input(props: InputProps) {
 
   function onChangeTextInterceptor(text: string) {
     if (isLocked) return;
-
     updateText(text);
   }
 
@@ -73,15 +72,15 @@ function Input(props: InputProps) {
     focusController.focus(fieldName);
   }
 
-  // useEffect(() => {
-  //   const keyboardDidShowListener = Keyboard.addListener(
-  //     "keyboardDidHide",
-  //     () => removeFocus()
-  //   );
-  //   return () => {
-  //     keyboardDidShowListener.remove();
-  //   };
-  // }, []);
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidHide",
+      removeFocus
+    );
+    return () => {
+      keyboardDidShowListener.remove();
+    };
+  }, []);
 
   return (
     <>
@@ -98,29 +97,30 @@ function Input(props: InputProps) {
             <View className="h-9 w-9 mr-4">{props.TrailingIcon}</View>
           )}
 
-          <View className="flex-1">
+          <View className="flex-1 h-full">
             <Moti.Text
               className={cn(
-                "text-base flex-1 absolute",
+                "text-[16px] flex-1 absolute",
                 activeLabel ? "text-primary-700" : "text-grey-60",
                 props.labelClasses
               )}
               animate={{
                 // @ts-ignore
                 fontSize: activeLabel ? 10 : 14,
-                top: activeLabel ? 0 : 12,
+                top: activeLabel ? 0 : 14,
               }}
-              transition={{ type: "timing", duration: 200 }}
+              transition={{ type: "timing", duration: 150 }}
             >
               {props.label}
             </Moti.Text>
 
             <TextInput
               {...props}
-              className={(cn(props.inputClasses), "flex-1 mt-2")}
+              className={(cn(props.inputClasses), "flex-1 text-sm")}
               ref={inputRef}
               placeholder={focused ? props.placeholder : ""}
               onFocus={requestFocus}
+              value={text}
               onChangeText={onChangeTextInterceptor}
               secureTextEntry={!showPassword}
               editable={!isLocked}
@@ -152,9 +152,6 @@ function Input(props: InputProps) {
           )}
         </View>
       </View>
-      {focused && (
-        <Pressable className="absolute h-full w-full" onPress={removeFocus} />
-      )}
     </>
   );
 }
@@ -164,7 +161,12 @@ Input.Password = (props: InputProps) => (
 );
 
 Input.Email = (props: InputProps) => (
-  <Input {...props} TrailingIcon={<LoginEmailIcon />} />
+  <Input
+    {...props}
+    TrailingIcon={<LoginEmailIcon />}
+    keyboardType="email-address"
+    autoCapitalize="none"
+  />
 );
 
 export { Input };
