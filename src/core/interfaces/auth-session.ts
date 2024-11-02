@@ -1,6 +1,6 @@
-// TODO: [ ] Adicionar id da maquininha
+import { IUser } from "./user";
+
 export interface IAuthSession {
-  token: string;
-  email: string;
-  name: string;
+  token?: string;
+  user: IUser;
 }

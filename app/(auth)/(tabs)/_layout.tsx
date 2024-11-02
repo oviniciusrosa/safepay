@@ -3,9 +3,9 @@ import { Redirect, Slot, Tabs } from "expo-router";
 import React from "react";
 
 export default function TabLayout() {
-  const { session } = useAuthSession();
+  const { isAuthenticated } = useAuthSession();
 
-  if (!session) return <Redirect href="/" />;
+  if (!isAuthenticated) return <Redirect href="/" />;
 
   if (process.env.EXPO_OS === "web") return <Slot />;
 

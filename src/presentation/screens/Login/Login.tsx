@@ -13,7 +13,9 @@ import { ScrollView, Text, View } from "react-native";
 import { Link } from "expo-router";
 
 export function Login(props: ILoginProps) {
-  const [email, setEmail] = React.useState("");
+  const [email, setEmail] = React.useState(
+    props.previousAuthenticatedUser?.email ?? ""
+  );
   const [password, setPassword] = React.useState("");
 
   return (
@@ -38,6 +40,8 @@ export function Login(props: ILoginProps) {
             placeholder="Digite seu email"
             value={email}
             onChangeText={setEmail}
+            lockField={Boolean(props.previousAuthenticatedUser?.email)}
+            enableEditingWhenLock
           />
 
           <Input.Password

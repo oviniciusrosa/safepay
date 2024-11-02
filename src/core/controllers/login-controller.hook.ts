@@ -25,12 +25,12 @@ export function useLoginController(props: Props): ILoginProps {
     loading.stop();
     if (error) return console.log(error);
 
-    console.log(session);
     authSession.signIn(session);
     router.push(RoutesDefinition.home);
   }
 
   return {
+    previousAuthenticatedUser: authSession.session?.user,
     requestSignIn,
     navigateToForgetPassword: () => {},
   };
