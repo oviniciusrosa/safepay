@@ -51,6 +51,8 @@ export function Login(props: ILoginProps) {
             placeholder="••••••••"
             value={password}
             onChangeText={setPassword}
+            onSubmitEditing={() => props.requestSignIn(email, password)}
+            returnKeyType="done"
           />
 
           {props.errorMessage && (
