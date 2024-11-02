@@ -11,6 +11,7 @@ import {
 } from "@/src/presentation/components";
 import { ScrollView, Text, View } from "react-native";
 import { Link } from "expo-router";
+import { RoutesDefinition } from "@/src/@types/routes-definition";
 
 export function Login(props: ILoginProps) {
   const [email, setEmail] = React.useState(
@@ -64,7 +65,7 @@ export function Login(props: ILoginProps) {
             onPress={() => props.requestSignIn(email, password)}
           />
 
-          <Link href="/" className="mt-6">
+          <Link href={RoutesDefinition.forgotPassword} className="mt-6">
             <Text className="text-grey-60 dark:text-grey-40 underline">
               Esqueci minha senha
             </Text>

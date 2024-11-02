@@ -50,6 +50,5 @@ export function useLoginController(props: Props): ILoginProps {
     errorMessage,
     previousAuthenticatedUser: authSession.session?.user,
     requestSignIn,
-    navigateToForgetPassword: () => {},
   };
 }

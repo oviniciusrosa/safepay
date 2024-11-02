@@ -2,6 +2,7 @@ export * from "./Card/Card";
 export * from "./LoadingDisplay/LoadingDisplay";
 export * from "./SnackBarDisplay/SnackBarDisplay";
 export * from "./Screen/Screen";
+export * from "./Screen/StepScreen";
 export * from "./Logo/Logo";
 export * from "./AppVersion/AppVersion";
 export * from "./Input/Input";

@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 import {
   Keyboard,
   Pressable,
@@ -19,7 +19,7 @@ import { LoginEmailIcon } from "../../icons/LoginEmail";
 
 export interface InputProps
   extends React.ComponentPropsWithoutRef<typeof TextInput> {
-  label: string;
+  label?: string;
   name?: string;
   labelClasses?: string;
   inputClasses?: string;
@@ -41,6 +41,12 @@ function Input(props: InputProps) {
   const focused = focusController.focusedField === fieldName;
 
   const activeLabel = text?.length > 0 || focused;
+
+  const placeholder = useMemo(() => {
+    if (!props.label) return props.placeholder;
+
+    return focused ? props.placeholder : "";
+  }, [focused, props.label, props.placeholder]);
 
   function updateText(text: string) {
     setText(text);
@@ -98,27 +104,30 @@ function Input(props: InputProps) {
           )}
 
           <View className="flex-1 h-full">
-            <Moti.Text
-              className={cn(
-                "text-[16px] flex-1 absolute",
-                activeLabel ? "text-primary-700" : "text-grey-60",
-                props.labelClasses
-              )}
-              animate={{
-                // @ts-ignore
-                fontSize: activeLabel ? 10 : 14,
-                top: activeLabel ? 2 : 14,
-              }}
-              transition={{ type: "timing", duration: 150 }}
-            >
-              {props.label}
-            </Moti.Text>
+            {props.label && (
+              <Moti.Text
+                className={cn(
+                  "text-[16px] flex-1 absolute",
+                  activeLabel ? "text-primary-700" : "text-grey-60",
+                  props.labelClasses
+                )}
+                animate={{
+                  // @ts-ignore
+                  fontSize: activeLabel ? 10 : 14,
+                  top: activeLabel ? 2 : 14,
+                }}
+                transition={{ type: "timing", duration: 150 }}
+              >
+                {props.label}
+              </Moti.Text>
+            )}
 
             <TextInput
               {...props}
-              className={(cn(props.inputClasses), "flex-1 text-sm")}
               ref={inputRef}
-              placeholder={focused ? props.placeholder : ""}
+              className={(cn(props.inputClasses), "flex-1 text-sm")}
+              placeholderTextColor={"#71767E"}
+              placeholder={placeholder}
               onFocus={requestFocus}
               value={text}
               onChangeText={onChangeTextInterceptor}

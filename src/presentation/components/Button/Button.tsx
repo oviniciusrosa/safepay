@@ -11,7 +11,7 @@ const buttonVariants = cva(
         default: "bg-primary",
         secondary: "bg-secondary",
         destructive: "bg-destructive",
-        ghost: "bg-slate-700",
+        ghost: "",
         link: "text-primary underline-offset-4",
       },
       size: {
@@ -33,7 +33,7 @@ const buttonTextVariants = cva("text-center font-medium", {
       default: "text-white dark:text-black",
       secondary: "text-secondary-foreground",
       destructive: "text-destructive-foreground",
-      ghost: "text-primary-foreground",
+      ghost: "color-primary",
       link: "text-primary-foreground underline",
     },
     size: {
