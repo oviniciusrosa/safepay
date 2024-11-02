@@ -107,7 +107,7 @@ function Input(props: InputProps) {
               animate={{
                 // @ts-ignore
                 fontSize: activeLabel ? 10 : 14,
-                top: activeLabel ? 0 : 14,
+                top: activeLabel ? 2 : 14,
               }}
               transition={{ type: "timing", duration: 150 }}
             >
