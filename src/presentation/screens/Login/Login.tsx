@@ -52,6 +52,12 @@ export function Login(props: ILoginProps) {
             onChangeText={setPassword}
           />
 
+          {props.errorMessage && (
+            <Text className="color-danger text-sm mb-3">
+              {props.errorMessage}
+            </Text>
+          )}
+
           <Button
             label="Entrar"
             variant="default"

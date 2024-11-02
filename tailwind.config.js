@@ -25,6 +25,11 @@ module.exports = {
       "grey-40": "#E6E8EB",
       "grey-20": "#F4F5F7",
       "grey-0": "#FCFDFF",
+
+      danger: "#DC3535",
+      success: "#28a745",
+      warning: "#FFC107",
+      info: "#17a2b8",
     },
   },
   plugins: [],

@@ -47,7 +47,7 @@ export class HttpClient implements IHttpClient {
       const error = err as AxiosError;
       console.log("error", error);
       const status = error.response?.status;
-      const message = error.response?.data || error.message;
+      const message = error.message ?? error.response?.data;
 
       const httpError = new HttpError(status, message);
 
