@@ -43,6 +43,7 @@ export function Login(props: ILoginProps) {
             onChangeText={setEmail}
             lockField={Boolean(props.previousAuthenticatedUser?.email)}
             enableEditingWhenLock
+            returnKeyType="next"
           />
 
           <Input.Password
