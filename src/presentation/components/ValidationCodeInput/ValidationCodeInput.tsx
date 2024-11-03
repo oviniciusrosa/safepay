@@ -8,6 +8,7 @@ interface Props {
   className?: string;
   codeSpaces?: number;
   onChangeCode: (code: string) => void;
+  onSubmitEditing?: VoidCallback;
 }
 
 export function ValidationCodeInput(props: Props) {
@@ -29,6 +30,7 @@ export function ValidationCodeInput(props: Props) {
         caretHidden={false}
         keyboardType="number-pad"
         textContentType="oneTimeCode"
+        onSubmitEditing={props.onSubmitEditing}
         renderCell={({ index, symbol, isFocused }) => (
           <View
             key={index}

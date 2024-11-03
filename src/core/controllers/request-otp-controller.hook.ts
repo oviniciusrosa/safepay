@@ -19,12 +19,19 @@ export function useRequestOTPController(props: Props): IRequestOTPProps {
   const [secondsToResend, setSecondsToResend] = useState(0);
   const [validateCode, setValidateCOde] = useState("");
 
+  const canGoNext = validateCode.length === CODE_CELL_COUNT;
+
   function changeCode(code: string) {
     setValidateCOde(code);
   }
 
   function goNext() {
-    router.push(RoutesDefinition.changePasswordSuccessfully);
+    if (!canGoNext) return;
+
+    router.push({
+      pathname: RoutesDefinition.resetPassword,
+      params: { email: params.email, code: validateCode },
+    });
   }
 
   function initCounter() {
@@ -53,7 +60,7 @@ export function useRequestOTPController(props: Props): IRequestOTPProps {
   }, [secondsToResend]);
 
   return {
-    canGoNext: validateCode.length === CODE_CELL_COUNT,
+    canGoNext,
     secondsToResend,
     resendCode: sendCode,
     goNext,

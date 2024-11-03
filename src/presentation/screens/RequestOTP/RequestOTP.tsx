@@ -32,6 +32,7 @@ export function RequestOTP(props: IRequestOTPProps) {
           <ValidationCodeInput
             className="mb-4"
             onChangeCode={props.changeCode}
+            onSubmitEditing={props.goNext}
           />
 
           <View className="flex-row items-center">

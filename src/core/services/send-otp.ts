@@ -1,5 +1,4 @@
 import { HttpMethod, HttpResponse, IHttpClient } from "@/src/infra/http-client";
-import { IAuthSession } from "../interfaces/auth-session";
 
 export interface ISendOTPService {
   exec: (email: string) => Promise<HttpResponse<void>>;

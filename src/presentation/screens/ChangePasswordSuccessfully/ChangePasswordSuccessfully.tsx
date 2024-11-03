@@ -1,19 +1,27 @@
 import React, { useEffect } from "react";
 
 import Feather from "@expo/vector-icons/Feather";
-import { IForgotPasswordProps } from "@/src/core/interfaces/forgot-password";
 import { Dimensions, Text, View } from "react-native";
-import { useRouter } from "expo-router";
-import { StepScreen, Button, Input } from "@/src/presentation/components";
+import { useNavigation } from "expo-router";
+import { StepScreen, Button } from "@/src/presentation/components";
 import { SuccessShape } from "../../icons/SuccessShape";
 import ConfettiAnimation from "@/assets/animations/confetti.json";
 
 import * as Moti from "moti";
 import LottieView from "lottie-react-native";
+import { RoutesDefinition } from "@/src/@types/routes-definition";
 
 export function ChangePasswordSuccessfully() {
   const [showConfetti, setShowConfetti] = React.useState(false);
-  const router = useRouter();
+  const navigation = useNavigation();
+
+  function finish() {
+    navigation.reset({
+      index: 0,
+      // @ts-ignore
+      routes: [{ name: "login", path: RoutesDefinition.login }], // your stack screen name
+    });
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -22,13 +30,7 @@ export function ChangePasswordSuccessfully() {
   }, []);
 
   return (
-    <StepScreen
-      title=""
-      currentStep={4}
-      steps={4}
-      onGoBack={() => router.dismissAll()}
-      showClose
-    >
+    <StepScreen title="" currentStep={4} steps={4} onGoBack={finish} showClose>
       <View className="mt-10 flex-1">
         <View className="my-auto items-center justify-center">
           <SuccessIndicator />
@@ -40,11 +42,7 @@ export function ChangePasswordSuccessfully() {
             necessário.
           </Text>
         </View>
-        <Button
-          label="Concluir"
-          className="mt-auto"
-          onPress={() => router.dismissAll()}
-        />
+        <Button label="Concluir" className="mt-auto" onPress={finish} />
       </View>
       <View
         className="absolute bottom-0 left-0 right-0 w-full h-full"
