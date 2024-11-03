@@ -31,6 +31,7 @@ module.exports = {
       success: "#28a745",
       warning: "#FFC107",
       info: "#17a2b8",
+      transparent: "transparent",
     },
   },
   plugins: [],

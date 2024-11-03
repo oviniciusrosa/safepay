@@ -8,3 +8,4 @@ export * from "./AppVersion/AppVersion";
 export * from "./Input/Input";
 export * from "./Button/Button";
 export * from "./FingerprintButton/FingerprintButton";
+export * from "./ValidationCodeInput/ValidationCodeInput";

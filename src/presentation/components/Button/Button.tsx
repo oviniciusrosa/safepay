@@ -65,7 +65,10 @@ function Button({
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(
+        buttonVariants({ variant, size, className }),
+        props.disabled ? "opacity-65 cursor-not-allowed" : ""
+      )}
       {...props}
     >
       <Text
