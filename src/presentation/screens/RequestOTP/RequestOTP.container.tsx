@@ -1,6 +1,6 @@
 import React from "react";
 import { RequestOTP } from "./RequestOTP";
-import { useRequestOTPController } from "@/src/core/controllers/request-otp-controller";
+import { useRequestOTPController } from "@/src/core/controllers/request-otp-controller.hook";
 import { HttpClient } from "@/src/infra/http-client";
 import { SendOTPService } from "@/src/core/services/send-otp";
 
