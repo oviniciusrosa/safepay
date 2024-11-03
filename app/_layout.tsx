@@ -7,6 +7,7 @@ import "react-native-reanimated";
 import { ThemeProvider } from "styled-components/native";
 
 import "@/src/theme/global.css";
+import { useColorScheme } from "nativewind";
 
 export const unstable_settings = {
   initialRouteName: "login",
@@ -16,6 +17,8 @@ export const unstable_settings = {
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const { colorScheme } = useColorScheme();
+
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
@@ -32,7 +35,15 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Stack initialRouteName="login" screenOptions={{ headerShown: false }}>
+      <Stack
+        initialRouteName="login"
+        screenOptions={{
+          headerShown: false,
+          contentStyle: {
+            backgroundColor: colorScheme == "dark" ? "#161616" : "#FFFFFF",
+          },
+        }}
+      >
         <Stack.Screen name="login" />
         <Stack.Screen name="(auth)" />
         <Stack.Screen name="+not-found" />

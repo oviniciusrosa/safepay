@@ -3,11 +3,13 @@ import { IForgotPasswordProps } from "../interfaces/forgot-password";
 import { validateEmail } from "../utils/validate-email";
 import { RoutesDefinition } from "@/src/@types/routes-definition";
 import { useRouter } from "expo-router";
+import { useAuthSession } from "../store/auth-session";
 
 export function useForgotPasswordController(): IForgotPasswordProps {
   const router = useRouter();
+  const { session } = useAuthSession();
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(session?.user?.email ?? "");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   function clearErrorMessage() {
@@ -31,6 +33,8 @@ export function useForgotPasswordController(): IForgotPasswordProps {
   }
 
   return {
+    email,
+    hasDefaultEmail: Boolean(session?.user?.email),
     saveEmail,
     onChangeEmail,
     errorMessage,

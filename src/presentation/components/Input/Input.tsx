@@ -61,7 +61,7 @@ function Input(props: InputProps) {
   function enableEditing() {
     setIsLocked(false);
     updateText("");
-    requestFocus();
+    focusController.focus(fieldName);
   }
 
   function togglePassword() {

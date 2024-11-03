@@ -21,9 +21,12 @@ export function ForgotPassword(props: IForgotPasswordProps) {
         <Input.Email
           placeholder="Digite seu email"
           className="mt-4"
+          value={props.email}
           onChangeText={props.onChangeEmail}
           onSubmitEditing={props.saveEmail}
           returnKeyType="done"
+          lockField={props.hasDefaultEmail}
+          enableEditingWhenLock
         />
 
         {props.errorMessage && (
