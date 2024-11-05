@@ -17,7 +17,7 @@ export class AuthCredentialsService implements IAuthCredentialsService {
   ): Promise<HttpResponse<IAuthSession>> {
     return await this.httpClient.sendRequest<IAuthSession>({
       method: HttpMethod.POST,
-      url: "/auth/login",
+      url: "/auth",
       body: { email, password },
     });
   }
