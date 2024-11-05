@@ -11,7 +11,7 @@ import { useAuthSession } from "../store/auth-session";
 import { useBackHandler } from "../hooks/use-back-handler";
 
 interface Props {
-  resetPasswordService: IResetPasswordService;
+  service: IResetPasswordService;
 }
 
 export function useResetPasswordController(props: Props): IResetPasswordProps {
@@ -71,7 +71,7 @@ export function useResetPasswordController(props: Props): IResetPasswordProps {
 
     loading.init();
 
-    const [error] = await props.resetPasswordService.exec(
+    const [error] = await props.service.resetPassword(
       params.code as string,
       password
     );

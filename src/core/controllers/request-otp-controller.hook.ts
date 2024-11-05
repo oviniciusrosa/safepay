@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { RoutesDefinition } from "@/src/@types/routes-definition";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { IRequestOTPProps } from "../interfaces/request-otp";
-import { ISendOTPService } from "../services/send-otp";
 import { useLoading } from "../store/loading";
+import { IResetPasswordService } from "../services/reset-password";
 
 const CODE_CELL_COUNT = 4;
 
 interface Props {
-  sendOTPService: ISendOTPService;
+  service: IResetPasswordService;
 }
 
 export function useRequestOTPController(props: Props): IRequestOTPProps {
@@ -42,7 +42,7 @@ export function useRequestOTPController(props: Props): IRequestOTPProps {
     if (!params.email) return;
 
     loading.init();
-    await props.sendOTPService.exec(params.email as string);
+    await props.service.sendOTP(params.email as string);
     initCounter();
     loading.stop();
   }

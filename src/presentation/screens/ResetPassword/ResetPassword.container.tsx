@@ -6,8 +6,8 @@ import { HttpClient } from "@/src/infra/http-client";
 
 export function ResetPasswordContainer() {
   const httpClient = HttpClient.create();
-  const resetPasswordService = new ResetPasswordService(httpClient);
-  const controller = useResetPasswordController({ resetPasswordService });
+  const service = new ResetPasswordService(httpClient);
+  const controller = useResetPasswordController({ service });
 
   return <ResetPassword {...controller} />;
 }
