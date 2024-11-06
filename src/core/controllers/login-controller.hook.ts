@@ -6,9 +6,12 @@ import { RoutesDefinition } from "@/src/@types/routes-definition";
 import { IAuthCredentialsService } from "../services/auth-credentials";
 import { useState } from "react";
 import { IHttpError } from "@/src/infra/http-error";
+import { IBiometricsService } from "../services/biometrics-auth";
 
+import { isEmpty } from "lodash";
 interface Props {
   authCredentialsService: IAuthCredentialsService;
+  biometricsService: IBiometricsService;
 }
 
 export function useLoginController(props: Props): ILoginProps {
@@ -30,7 +33,14 @@ export function useLoginController(props: Props): ILoginProps {
     );
   }
 
-  async function requestSignIn(email: string, password: string) {
+  async function requestSignIn(
+    email: string,
+    password: string,
+    savePassword = true
+  ) {
+    if (isEmpty(email)) return setErrorMessage("Insira um e-mail válido!");
+    if (isEmpty(password)) return setErrorMessage("Insira uma senha válida!");
+
     loading.init();
     clearErrorMessage();
 
@@ -39,16 +49,26 @@ export function useLoginController(props: Props): ILoginProps {
       password
     );
 
-    loading.stop();
     if (error) return composeErrorMessage(error);
+    if (savePassword) await props.biometricsService.savePassword(password);
 
     authSession.signIn(session);
+
+    loading.stop();
     router.push(RoutesDefinition.home);
+  }
+
+  async function requestBiometricsSignIn() {
+    const password = await props.biometricsService.getStoredPassword();
+    if (!password) return;
+
+    requestSignIn(authSession.session.user.email, password, false);
   }
 
   return {
     errorMessage,
     previousAuthenticatedUser: authSession.session?.user,
     requestSignIn,
+    requestBiometricsSignIn,
   };
 }

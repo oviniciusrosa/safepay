@@ -60,11 +60,11 @@ export function StepScreen(props: Props): React.ReactElement {
           style={{
             shadowColor: "#388E63",
             shadowOffset: {
-              width: 20,
-              height: 4,
+              width: 4,
+              height: 3,
             },
             shadowOpacity: 0.37,
-            shadowRadius: 4.65,
+            shadowRadius: 8.65,
 
             elevation: 11,
           }}

@@ -3,6 +3,7 @@ import { TouchableOpacity } from "react-native";
 import { FingerprintIcon } from "../../icons/Fingerprint";
 
 interface Props {
+  onRequest: VoidCallback;
   className?: string;
 }
 
@@ -11,7 +12,7 @@ export function FingerprintButton(props: Props) {
     <TouchableOpacity
       className={props.className}
       activeOpacity={0.7}
-      onPress={() => {}}
+      onPress={props.onRequest}
     >
       <FingerprintIcon />
     </TouchableOpacity>

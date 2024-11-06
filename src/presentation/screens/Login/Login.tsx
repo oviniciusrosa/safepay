@@ -19,6 +19,8 @@ export function Login(props: ILoginProps) {
   );
   const [password, setPassword] = React.useState("");
 
+  const hasPreviousUser = Boolean(props.previousAuthenticatedUser);
+
   return (
     <Screen>
       <ScrollView
@@ -41,7 +43,7 @@ export function Login(props: ILoginProps) {
             placeholder="Digite seu email"
             value={email}
             onChangeText={setEmail}
-            lockField={Boolean(props.previousAuthenticatedUser?.email)}
+            lockField={hasPreviousUser}
             enableEditingWhenLock
             returnKeyType="next"
           />
@@ -74,7 +76,12 @@ export function Login(props: ILoginProps) {
             </Text>
           </Link>
 
-          <FingerprintButton className="mt-12 self-center" />
+          {hasPreviousUser && (
+            <FingerprintButton
+              className="mt-12 self-center"
+              onRequest={props.requestBiometricsSignIn}
+            />
+          )}
         </View>
 
         <AppVersion className="self-center" />
