@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { MotiText, MotiView } from "moti";
+import { Dimensions } from "react-native";
 
 const INIT_STYLE = { opacity: 0, transform: [{ translateY: 10 }] };
 const IN_SCREEN_STYLE = { opacity: 1, transform: [{ translateY: 0 }] };
@@ -21,8 +22,8 @@ export const Container: typeof MotiView = styled(MotiView)`
 
   background-color: rgba(0, 0, 0, 0.4);
 
-  width: 100%;
-  height: 100%;
+  width: ${Dimensions.get("screen").width}px;
+  height: ${Dimensions.get("screen").height}px;
   align-items: center;
   justify-content: center;
 
