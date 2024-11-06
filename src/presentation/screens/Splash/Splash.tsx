@@ -2,15 +2,19 @@ import React, { useEffect } from "react";
 import { cn } from "../../lib/utils";
 import * as Moti from "moti";
 import { AppVersion, Logo } from "@/src/presentation/components";
-import { useRouter } from "expo-router";
+import { useNavigation } from "expo-router";
 import { RoutesDefinition } from "@/src/@types/routes-definition";
 
 export function SplashScreen() {
-  const router = useRouter();
+  const navigation = useNavigation();
 
   useEffect(() => {
     setTimeout(() => {
-      router.push(RoutesDefinition.login);
+      navigation.reset({
+        index: 0,
+        // @ts-ignore
+        routes: [{ name: "login", path: RoutesDefinition.login }], // your stack screen name
+      });
     }, 1000);
   }, []);
 
